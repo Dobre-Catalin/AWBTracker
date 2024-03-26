@@ -1,6 +1,9 @@
-package Model;
+package org.example.awbtrackerproject.Model.Parcel;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.example.awbtrackerproject.Model.Hub.Hub;
+import org.example.awbtrackerproject.Model.User.User;
 
 @Entity
 public class Parcel {
@@ -18,12 +21,15 @@ public class Parcel {
     String senderPhoneNumber;
     String recepientPhoneNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "userSending")
+    @JsonBackReference
+    private User userSending;
+
 
     public Parcel(String AWB, Double mass, Double height, Double width, Double length, Boolean fragile, Double urgency, Integer sourceZIP, Integer destinationZIP, String sourceAddress, String destinationAddress, String senderPhoneNumber, String recepientPhoneNumber, User user) {
         this.AWB = AWB;
@@ -39,91 +45,127 @@ public class Parcel {
         this.destinationAddress = destinationAddress;
         this.senderPhoneNumber = senderPhoneNumber;
         this.recepientPhoneNumber = recepientPhoneNumber;
-        this.user = user;
-    }
-
-    public Parcel(User user) {
-
-        this.user = user;
+        this.userSending = user;
     }
 
     public Parcel() {
 
     }
 
+
     public String getAWB() {
         return AWB;
-    }
-
-    public Double getMass() {
-        return mass;
-    }
-
-    public Double getHeight() {
-        return height;
-    }
-
-    public Double getWidth() {
-        return width;
-    }
-
-    public Double getLength() {
-        return length;
-    }
-
-    public Boolean getFragile() {
-        return fragile;
-    }
-
-    public Double getUrgency() {
-        return urgency;
-    }
-
-    public Integer getSourceZIP() {
-        return sourceZIP;
-    }
-
-    public Integer getDestinationZIP() {
-        return destinationZIP;
-    }
-
-    public String getSourceAddress() {
-        return sourceAddress;
-    }
-
-    public String getDestinationAddress() {
-        return destinationAddress;
-    }
-
-    public String getSenderPhoneNumber() {
-        return senderPhoneNumber;
-    }
-
-    public String getRecepientPhoneNumber() {
-        return recepientPhoneNumber;
     }
 
     public void setAWB(String AWB) {
         this.AWB = AWB;
     }
 
+    public Double getMass() {
+        return mass;
+    }
+
     public void setMass(Double mass) {
         this.mass = mass;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Double getHeight() {
+        return height;
     }
 
-    public Long getId() {
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public Double getWidth() {
+        return width;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public Double getLength() {
+        return length;
+    }
+
+    public void setLength(Double length) {
+        this.length = length;
+    }
+
+    public Boolean getFragile() {
+        return fragile;
+    }
+
+    public void setFragile(Boolean fragile) {
+        this.fragile = fragile;
+    }
+
+    public Double getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Double urgency) {
+        this.urgency = urgency;
+    }
+
+    public Integer getSourceZIP() {
+        return sourceZIP;
+    }
+
+    public void setSourceZIP(Integer sourceZIP) {
+        this.sourceZIP = sourceZIP;
+    }
+
+    public Integer getDestinationZIP() {
+        return destinationZIP;
+    }
+
+    public void setDestinationZIP(Integer destinationZIP) {
+        this.destinationZIP = destinationZIP;
+    }
+
+    public String getSourceAddress() {
+        return sourceAddress;
+    }
+
+    public void setSourceAddress(String sourceAddress) {
+        this.sourceAddress = sourceAddress;
+    }
+
+    public String getDestinationAddress() {
+        return destinationAddress;
+    }
+
+    public void setDestinationAddress(String destinationAddress) {
+        this.destinationAddress = destinationAddress;
+    }
+
+    public String getSenderPhoneNumber() {
+        return senderPhoneNumber;
+    }
+
+    public void setSenderPhoneNumber(String senderPhoneNumber) {
+        this.senderPhoneNumber = senderPhoneNumber;
+    }
+
+    public String getRecepientPhoneNumber() {
+        return recepientPhoneNumber;
+    }
+
+    public void setRecepientPhoneNumber(String recepientPhoneNumber) {
+        this.recepientPhoneNumber = recepientPhoneNumber;
+    }
+
+    public User getUserSending() {
+        return userSending;
+    }
+
+    public void setUserSending(User userSending) {
+        this.userSending = userSending;
+    }
+
+    public Integer getId() {
         return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
